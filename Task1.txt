@@ -1,0 +1,16 @@
+Add yours here
+.
+.
+11. := expression
+12. INT | FLOAT | STRING
+13. data_type identifier assignment? (, identifier assignment?)\* ;
+14. WRITE expression | endl ;
+15. READ identifier ;
+16. RETURN expression ;
+17. < | > | = | <>
+18. identifier condition term
+19. && | ||
+20. condition (boolean_opearator condition)\*
+.
+.
+Add yours here
