@@ -1,13 +1,13 @@
 1. Number:=[0-9]+(\.[0-9]+)?
 2. String :=“(.)*“
-3. Reserved_Keywords :=int|float|string|read|write|repeat|until|if|elseif|else|then |return|endl
-4. Comment_Statement := /* (String)* */
+3. Reserved_Keywords :=int|float|string|read|write|repeat|until|if|elseif|else|then|return|endl
+4. Comment_Statement := /\* (String)* \*/
 5. Identifiers :=[a-z A-Z]+ [a-z A-z Number]*
 6. Function_Call:=Identifier\( ((Identifier,)*Identifier)*) \)
 7. Term :=Number|Identifier|Function_Call
-8. Arithamtic_Operator :=+ |-| * | /
+8. Arithamtic_Operator :=+|-|*|/
 9. Equation :=(TermArithamtic_Operator)+ Term|\( (TermArithamtic_Operator)+  Term\)
-10. Expression :=  String|Term|Equation
+10. Expression := String|Term|Equation
 11. := expression
 12. INT | FLOAT | STRING
 13. data_type identifier assignment? (, identifier assignment?)\* ;
