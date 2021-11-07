@@ -49,29 +49,20 @@ namespace Tiny_Language
 
         }
 
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void button2_Click(object sender, EventArgs e)
         {
             dataGridView1.Rows.Clear();
             Tiny_Language.TokenStream.Clear();
         }
 
-        private void textBox2_TextChanged(object sender, EventArgs e)
-        {
-
-        }
         /*  void PrintLexemes()
             {
                 for (int i = 0; i < Tiny_Language.Lexemes.Count; i++)
                 {
-                textBox2.Text += Tiny_Language.Lexemes.ElementAt(i);
-                textBox2.Text += Environment.NewLine;
+                    textBox2.Text += Tiny_Language.Lexemes.ElementAt(i);
+                    textBox2.Text += Environment.NewLine;
                 }
-             }
+            }
         */
     }
 }

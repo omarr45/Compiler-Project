@@ -43,20 +43,23 @@ namespace Tiny_Language
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(471, 395);
+            this.button2.Location = new System.Drawing.Point(628, 486);
+            this.button2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(120, 44);
+            this.button2.Size = new System.Drawing.Size(160, 54);
             this.button2.TabIndex = 13;
             this.button2.Text = "Clear";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(10, 409);
+            this.label2.Location = new System.Drawing.Point(13, 503);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(66, 15);
+            this.label2.Size = new System.Drawing.Size(79, 18);
             this.label2.TabIndex = 12;
             this.label2.Text = "Error List";
             // 
@@ -64,9 +67,10 @@ namespace Tiny_Language
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(16, 10);
+            this.label1.Location = new System.Drawing.Point(21, 12);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(70, 15);
+            this.label1.Size = new System.Drawing.Size(84, 18);
             this.label1.TabIndex = 11;
             this.label1.Text = "Tiny Code";
             // 
@@ -76,12 +80,12 @@ namespace Tiny_Language
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column1,
             this.Column2});
-            this.dataGridView1.Location = new System.Drawing.Point(382, 19);
-            this.dataGridView1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dataGridView1.Location = new System.Drawing.Point(509, 23);
+            this.dataGridView1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(306, 350);
+            this.dataGridView1.Size = new System.Drawing.Size(408, 431);
             this.dataGridView1.TabIndex = 10;
             // 
             // Column1
@@ -100,38 +104,39 @@ namespace Tiny_Language
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(104, 386);
-            this.button1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button1.Location = new System.Drawing.Point(139, 475);
+            this.button1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(146, 45);
+            this.button1.Size = new System.Drawing.Size(195, 55);
             this.button1.TabIndex = 9;
             this.button1.Text = "Compile !";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // textBox2
             // 
-            this.textBox2.Location = new System.Drawing.Point(13, 435);
-            this.textBox2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBox2.Location = new System.Drawing.Point(17, 535);
+            this.textBox2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.textBox2.Multiline = true;
             this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(354, 93);
+            this.textBox2.Size = new System.Drawing.Size(471, 114);
             this.textBox2.TabIndex = 8;
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(13, 28);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBox1.Location = new System.Drawing.Point(17, 34);
+            this.textBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(354, 340);
+            this.textBox1.Size = new System.Drawing.Size(471, 418);
             this.textBox1.TabIndex = 7;
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
-            this.ClientSize = new System.Drawing.Size(700, 559);
+            this.ClientSize = new System.Drawing.Size(931, 678);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
@@ -139,10 +144,10 @@ namespace Tiny_Language
             this.Controls.Add(this.button1);
             this.Controls.Add(this.textBox2);
             this.Controls.Add(this.textBox1);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(716, 598);
-            this.MinimumSize = new System.Drawing.Size(716, 598);
+            this.MaximumSize = new System.Drawing.Size(949, 725);
+            this.MinimumSize = new System.Drawing.Size(949, 725);
             this.Name = "Form1";
             this.Text = "Tiny Language";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
