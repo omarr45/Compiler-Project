@@ -31,4 +31,5 @@
 |     Function_Body     |            `{ (statement)+ (Return_statement) }`             |
 |  Function_Statement   |           `(Function_declarartion)(Function_body)`           |
 |     Main_Function     |              `(Datatype) (main)(Function_body)`              |
-|        Program        |            (Function_statement)* (Main_Function)             |
+|        Program        |           `(Function_statement)* (Main_Function)`            |
+
