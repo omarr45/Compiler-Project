@@ -7,7 +7,7 @@
 |      Identifiers      |                 [a-z A-Z]+ [a-z A-z Number]*                 |
 |     Function_Call     |         Identifier\( ((Identifier,)*Identifier)*) \)         |
 |         Term          |              Number\|Identifier\|Function_Call               |
-|  Arithamtic_Operator  |                         + | - | * | /                        |
+|  Arithamtic_Operator  |                         + \| \-\| \* \| \/                   |
 |       Equation        |               (TermArithamtic_Operator)+ Term                |
 |      Expression       |                    String\|Term\|Equation                    |
 | Assignment_Statement  |                       := (Expression)                        |
