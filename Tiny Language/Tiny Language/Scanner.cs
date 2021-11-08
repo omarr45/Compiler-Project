@@ -9,7 +9,8 @@ public enum Token_Class
 {
     If, Int , Float , String , Read , Write , Repeat , Until , Elseif , Else , Then , Return , Endl,
 
-    Semicolon, Comma, LParanthesis, RParanthesis, EqualOp, LessThanOp, GreaterThanOp, NotEqualOp, AssignmentOp,
+    Semicolon, Comma, LParanthesis, RParanthesis, LCurlyBracket, RCurlyBracket,
+    EqualOp, LessThanOp, GreaterThanOp, NotEqualOp, AssignmentOp,
     PlusOp, MinusOp, MultiplyOp, DivideOp,
     Idenifier, Constant
     //,Dot
@@ -48,6 +49,8 @@ namespace Tiny_Language
             Operators.Add(",", Token_Class.Comma);
             Operators.Add("(", Token_Class.LParanthesis);
             Operators.Add(")", Token_Class.RParanthesis);
+            Operators.Add("{", Token_Class.LCurlyBracket);
+            Operators.Add("}", Token_Class.RCurlyBracket);
             Operators.Add("=", Token_Class.EqualOp);
             Operators.Add("<", Token_Class.LessThanOp);
             Operators.Add(">", Token_Class.GreaterThanOp);
@@ -63,64 +66,86 @@ namespace Tiny_Language
 
         public void StartScanning(string SourceCode)
         {
-            // i: Outer loop to check on lexemes.
+            //ISSUES: thinks that every word in a string is an id, ex. "x y z", thinks that x,y and z are ids
+            const string oneCharTokens = "(){};";
+            const string whiteSpace = " \r\n";
+            string currentLexeme = "";
             for (int i = 0; i < SourceCode.Length; i++)
             {
-                // j: Inner loop to check on each character in a single lexeme.
-                int j = i;
-                char CurrentChar = SourceCode[i];
-                string CurrentLexeme = CurrentChar.ToString();
+                char c = SourceCode[i];
 
-                if (CurrentChar == ' ' || CurrentChar == '\r' || CurrentChar == '\n')
+                if (whiteSpace.Contains(c) || oneCharTokens.Contains(c))
+                {
+                    if(currentLexeme.Length > 0)
+                    {
+                        FindTokenClass(currentLexeme);
+                        currentLexeme = "";
+                    }
+
+                    if (oneCharTokens.Contains(c))
+                        FindTokenClass(c.ToString());
+
                     continue;
-
-                if (char.IsLetter(CurrentChar))
-                {
-                    // The possible Token Classes that begin with a character are
-                    // an Idenifier or a Reserved Word.
-
-                    // (1) Update the CurrentChar and validate its value.
-
-                    // (2) Iterate to build the rest of the lexeme while satisfying the
-                    // conditions on how the Token Classes should be.
-                    // (2.1) Append the CurrentChar to CurrentLexeme.
-                    // (2.2) Update the CurrentChar.
-
-                    // (3) Call FindTokenClass on the CurrentLexeme.
-
-                    // (4) Update the outer loop pointer (i) to point on the next lexeme.
                 }
-                else if (char.IsDigit(CurrentChar))
-                {
 
-                }
-                else if (CurrentChar == '{')
+                if (char.IsLetterOrDigit(c))
                 {
+                    currentLexeme += c;
+                }
 
-                }
-                else
-                {
-                    Errors.Error_List.Add(CurrentLexeme);
-                }
+                //TODO: in case of comments, What is the symbol for comments in tiny?
+                //else if (c == '')
+                //    while (c != '')
+                //        if (i < SourceCode.Length)
+                //            i++;
+                //        else
+                //            break;
+
+
+                
             }
-
-            Tiny_Language.TokenStream = Tokens;
+            
         }
 
         void FindTokenClass(string Lex)
         {
-            Token_Class TC;
             Token Tok = new Token();
             Tok.lex = Lex;
             //Is it a reserved word?
-            
-            //Is it an identifier?
 
+            if (ReservedWords.ContainsKey(Lex))
+            {
+                Tok.token_type = ReservedWords[Lex];
+                Tokens.Add(Tok);
+            }
+
+            //Is it an identifier?
+            else if (isIdentifier(Lex))
+            {
+                Tok.token_type = Token_Class.Idenifier;
+                Tokens.Add(Tok);
+            }
             //Is it a Constant?
+            else if (isConstant(Lex))
+            {
+                Tok.token_type = Token_Class.Constant;
+                Tokens.Add(Tok);
+            }
 
             //Is it an operator?
+            else if (Operators.ContainsKey(Lex))
+            {
+                Tok.token_type = Operators[Lex];
+                Tokens.Add(Tok);
+            }
+
+            //TODO: what else? function statments? parameters?
 
             //Is it an undefined?
+            else
+            {
+                Errors.Error_List.Add(Lex);
+            }
 
         }
 

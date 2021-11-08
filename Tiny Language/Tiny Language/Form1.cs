@@ -51,6 +51,7 @@ namespace Tiny_Language
 
         private void button2_Click(object sender, EventArgs e)
         {
+            //TODO: make button clear clear the actual data not just hide it, also clear errors
             dataGridView1.Rows.Clear();
             Tiny_Language.TokenStream.Clear();
         }
