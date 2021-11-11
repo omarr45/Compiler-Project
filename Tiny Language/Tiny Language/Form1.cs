@@ -54,6 +54,7 @@ namespace Tiny_Language
             //TODO: make button clear clear the actual data not just hide it, also clear errors
             dataGridView1.Rows.Clear();
             Tiny_Language.TokenStream.Clear();
+            Tiny_Language.Tiny_Scanner.Tokens.Clear();
         }
 
         /*  void PrintLexemes()
