@@ -3,8 +3,9 @@ This is an implementation to tiny language compiler
 
 ## Docs
 
-- [Regex Expressions](/docs/regex-expressions.md)
-- [DFA](/docs/dfa.md)
+- [Regex Expressions](docs/regex-expressions.md)
+- [DFA](docs/dfa.md)
+- [Sample Codes](docs/samples.md)
 
 ## Acknowledgments
 

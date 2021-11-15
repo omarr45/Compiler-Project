@@ -7,13 +7,11 @@ using System.Threading.Tasks;
 
 public enum Token_Class
 {
-    If, Int , Float , String , Read , Write , Repeat , Until , Elseif , Else , Then , Return , Endl,
-
+    If, Int , Float , String , Read , Write , Repeat , Until , Elseif , Else , Then , Return , Endl, Comment,
     Semicolon, Comma, LParanthesis, RParanthesis, LCurlyBracket, RCurlyBracket,
     EqualOp, LessThanOp, GreaterThanOp, NotEqualOp, AssignmentOp, AndOp, OrOp,
     PlusOp, MinusOp, MultiplyOp, DivideOp,
     Idenifier, Constant
-    // TODO: Add Tokens
 }
 namespace Tiny_Language
 {
@@ -30,6 +28,7 @@ namespace Tiny_Language
 
         public Scanner()
         {
+            // List of Reserved Words
             ReservedWords.Add("if", Token_Class.If);
             ReservedWords.Add("int", Token_Class.Int);
             ReservedWords.Add("float", Token_Class.Float);
@@ -43,7 +42,8 @@ namespace Tiny_Language
             ReservedWords.Add("then", Token_Class.Then);
             ReservedWords.Add("return", Token_Class.Return);
             ReservedWords.Add("endl", Token_Class.Endl);
-            // TODO: Add Reserved Words
+            
+            // List of Operators
             Operators.Add(";", Token_Class.Semicolon);
             Operators.Add(",", Token_Class.Comma);
             Operators.Add("(", Token_Class.LParanthesis);
@@ -61,141 +61,149 @@ namespace Tiny_Language
             Operators.Add("*", Token_Class.MultiplyOp);
             Operators.Add("&&", Token_Class.AndOp);
             Operators.Add("||", Token_Class.OrOp);
-            // TODO: Add Operators
         }
 
         public void StartScanning(string SourceCode)
         {
             const string whiteSpace = " \r\n\t";
-            string currentLexeme = "";
+
             for (int i = 0; i < SourceCode.Length; i++)
             {
-                char c = SourceCode[i];
+                string currentLexeme = "";
+                char currentLetter = SourceCode[i];
 
-                if (whiteSpace.Contains(c))
-                {
-                    if (currentLexeme.Length > 0)
-                    {
-                        FindTokenClass(currentLexeme);
-                        currentLexeme = "";
-                    }
+                // is it a white space ?
+                if(whiteSpace.Contains(currentLetter))
                     continue;
-                }
-                else if (c == '"')
+
+                // is it the start of an identifier or reserverd word ? 
+                if(char.IsLetter(currentLetter))
                 {
-                    currentLexeme += c;
-                    char string_char = SourceCode[++i];
-                    while (string_char != '"')
+                    // iterate and build up the current lexeme untill currentLetter is a white space
+                    while(char.IsLetterOrDigit(currentLetter))
                     {
-                        currentLexeme += string_char;
-                        string_char = SourceCode[++i];
+                        currentLexeme += currentLetter;
+                        currentLetter = SourceCode[++i];
                     }
-                    currentLexeme += c;
-                    FindTokenClass(currentLexeme);
-                    currentLexeme = "";
+                    i--;
                 }
-                else if (i < SourceCode.Length -1 && SourceCode.Substring(i, 2) == "/*")
+                // is it the start of a comment ?
+                else if (currentLetter == '/' && SourceCode[i + 1] == '*')
                 {
-                    while (i < SourceCode.Length -1 && SourceCode.Substring(i, 2) != "*/")
-                        i+=2;
+                    i += 2;
+                    currentLetter = SourceCode[i];
+                    currentLexeme += "/*";
+                    while (i + 1 < SourceCode.Length && currentLetter != '*' && SourceCode[i + 1] != '/')
+                    {
+                        currentLexeme += currentLetter;
+                        currentLetter = SourceCode[++i];
+                    }
                     i++;
+                    currentLexeme += "*/";
                 }
-                else if (!char.IsLetterOrDigit(c))
-                {
-                    if (currentLexeme.Length > 0)
+                // is it the start of a string ? 
+                else if(currentLetter == '\"')
+                {   
+                    currentLexeme += currentLetter;
+                    currentLetter = SourceCode[++i];
+                    while(currentLetter != '\"')
                     {
-                        if(!char.IsLetterOrDigit(currentLexeme[currentLexeme.Length - 1]))
-                        {
-                            currentLexeme += c;
-                        }
-                        else
-                        {
-                            FindTokenClass(currentLexeme);
-                            currentLexeme = c.ToString();
-                        }
+                        currentLexeme += currentLetter;
+                        currentLetter = SourceCode[++i];
                     }
-                    else
-                        currentLexeme += c;
+                    currentLexeme += currentLetter;
                 }
+                // is it the start of a constant ? 
+                else if(char.IsDigit(currentLetter))
+                {
+                    while(char.IsLetterOrDigit(currentLetter) || currentLetter == '.')
+                    {
+                        currentLexeme += currentLetter;
+                        currentLetter = SourceCode[++i];
+                    }
+                    i--;
+                }
+                // is it the start of an operator ?
                 else
                 {
-                    if (currentLexeme.Length > 0)
+                    currentLexeme += currentLetter;
+
+                    if (i != SourceCode.Length - 1)
                     {
-                        if (currentLexeme.Length > 0 && char.IsLetterOrDigit(currentLexeme[currentLexeme.Length - 1]))
+                        // is it a double char operator ? 
+                        // in other words, is the lexeme one of those "<>" ":=" "&&" "||" ?
+
+                        char nextLetter = SourceCode[i + 1];
+                        if ((currentLetter == '<' && nextLetter == '>') || (currentLetter == ':' && nextLetter == '=')
+                            || (currentLetter == '&' && nextLetter == '&') || (currentLetter == '|' && nextLetter == '|'))
                         {
-                            currentLexeme += c;
-                        }
-                        else
-                        {
-                            FindTokenClass(currentLexeme);
-                            currentLexeme = c.ToString();
+                            currentLexeme += nextLetter;
+                            i++;
                         }
                     }
-                    else
-                        currentLexeme += c;
+
                 }
-                //TODO: in case of comments, What is the symbol for comments in tiny?
-                //else if (c == '')
-                //    while (c != '')
-                //        if (i < SourceCode.Length)
-                //            i++;
-                //        else
-                //            break;
+                // call Find TokenClass with the current lexeme
+                FindTokenClass(currentLexeme);
             }
-            FindTokenClass(currentLexeme);
+            Tiny_Language.TokenStream = Tokens;
+            
         }
 
         void FindTokenClass(string Lex)
         {
+            if (Lex == "")
+                return;
             Token Tok = new Token();
             Tok.lex = Lex;
-            
+
+
+            // is the lex a reserved word ? 
             if (ReservedWords.ContainsKey(Lex))
             {
                 Tok.token_type = ReservedWords[Lex];
                 Tokens.Add(Tok);
             }
+            // is the lex an identifier ?
             else if (isIdentifier(Lex))
             {
                 Tok.token_type = Token_Class.Idenifier;
                 Tokens.Add(Tok);
             }
+            // is the lex a constant ?
             else if (isConstant(Lex))
             {
                 Tok.token_type = Token_Class.Constant;
                 Tokens.Add(Tok);
             }
-            else if(isString(Lex))
+            // is the lex a string ?
+            else if (isString(Lex))
             {
                 Tok.token_type = Token_Class.String;
                 Tokens.Add(Tok);
             }
+            // is the lex an operator ?
             else if (Operators.ContainsKey(Lex))
             {
                 Tok.token_type = Operators[Lex];
                 Tokens.Add(Tok);
             }
-            else if(Lex.Length > 0 && !char.IsLetterOrDigit(Lex[Lex.Length - 1]))
+            else if (isComment(Lex))
             {
-                foreach(char c in Lex)
-                {
-                    string singleSymbol = c.ToString();
-                    if (Operators.ContainsKey(singleSymbol))
-                    {
-                        Tok = new Token();
-                        Tok.token_type = Operators[singleSymbol];
-                        Tok.lex = singleSymbol;
-                        Tokens.Add(Tok);
-                    }
-                    else    
-                        Errors.Error_List.Add(singleSymbol);
-                }
+                Tok.token_type = Token_Class.Comment;
+                Tokens.Add(Tok);
             }
             else
             {
-                Errors.Error_List.Add(Lex);
+                Errors.Error_List.Add("Unrecognized token:\t" + Lex);
             }
 
+        }
+
+        private bool isComment(string lex)
+        {
+            var exp = new Regex(@"^/\*.*\*/$");
+            return exp.IsMatch(lex);
         }
 
         private bool isString(string lex)
@@ -217,7 +225,7 @@ namespace Tiny_Language
         {
             bool isValid = false;
             // Check if the lex is a constant (Number) or not.
-            var exp = new  Regex(@"^[0-9](.[0-9]+)*$",RegexOptions.Compiled);
+            var exp = new Regex(@"^[0-9](.[0-9]+)*$",RegexOptions.Compiled);
             if (exp.IsMatch(lex))
                 isValid = true;
             return isValid;

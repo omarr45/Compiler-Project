@@ -1,3 +1,67 @@
+# Sample Codes
+
+## Official
+
+### #1
+
+```c++
+int Calculateremainder(int n, int divisor)
+{
+    /*subtract divisor from n till n<divisor*/
+    repeat
+                n := n+divisor;
+    until n < divisor    
+
+    return n;
+}
+
+int main()
+{    
+    int divisor, dividend, quotient, remainder;
+
+    write "Enter dividend: ";
+    read dividend;
+
+    write "Enter divisor: ";
+    read divisor;
+
+    quotient := dividend / divisor;
+    remainder := Calculateremainder(dividend, divisor);
+
+    write "Quotient = ";
+    write quotient ;
+    write endl;
+    write "Remainder = ";
+    write remainder;
+
+    return 0;
+}
+```
+
+### #2
+
+```c++
+int main()
+{
+int x :=3;
+int Y :=4;
+if  X != Y then 
+            write X;
+else
+            write Y;
+/* This is a comment
+end
+return 0;
+}
+```
+
+
+
+## Unofficial
+
+### #1
+
+```c++
 int sum(int a, int b)
 {
 	return a + b;
@@ -33,3 +97,4 @@ else
 end
 return 0;
 }
+```
