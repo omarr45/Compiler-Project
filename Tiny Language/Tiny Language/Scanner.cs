@@ -80,10 +80,10 @@ namespace Tiny_Language
                 if(char.IsLetter(currentLetter))
                 {
                     // iterate and build up the current lexeme untill currentLetter is a white space
-                    while(char.IsLetterOrDigit(currentLetter))
+                    while (i < SourceCode.Length && char.IsLetterOrDigit(SourceCode[i]))
                     {
+                        currentLetter = SourceCode[i++];
                         currentLexeme += currentLetter;
-                        currentLetter = SourceCode[++i];
                     }
                     i--;
                 }
@@ -93,7 +93,7 @@ namespace Tiny_Language
                     i += 2;
                     currentLetter = SourceCode[i];
                     currentLexeme += "/*";
-                    while (i + 1 < SourceCode.Length && currentLetter != '*' && SourceCode[i + 1] != '/')
+                    while (i + 1 < SourceCode.Length && (currentLetter != '*' || SourceCode[i + 1] != '/'))
                     {
                         currentLexeme += currentLetter;
                         currentLetter = SourceCode[++i];
@@ -106,7 +106,7 @@ namespace Tiny_Language
                 {   
                     currentLexeme += currentLetter;
                     currentLetter = SourceCode[++i];
-                    while(currentLetter != '\"')
+                    while(i + 1 < SourceCode.Length && currentLetter != '\"')
                     {
                         currentLexeme += currentLetter;
                         currentLetter = SourceCode[++i];
@@ -116,10 +116,10 @@ namespace Tiny_Language
                 // is it the start of a constant ? 
                 else if(char.IsDigit(currentLetter))
                 {
-                    while(char.IsLetterOrDigit(currentLetter) || currentLetter == '.')
+                    while(i < SourceCode.Length && (char.IsDigit(SourceCode[i]) || SourceCode[i] == '.'))
                     {
+                        currentLetter = SourceCode[i++];
                         currentLexeme += currentLetter;
-                        currentLetter = SourceCode[++i];
                     }
                     i--;
                 }
@@ -202,7 +202,7 @@ namespace Tiny_Language
 
         private bool isComment(string lex)
         {
-            var exp = new Regex(@"^/\*.*\*/$");
+            var exp = new Regex(@"^/\*[\s\S]*\*/$");
             return exp.IsMatch(lex);
         }
 
@@ -225,7 +225,7 @@ namespace Tiny_Language
         {
             bool isValid = false;
             // Check if the lex is a constant (Number) or not.
-            var exp = new Regex(@"^[0-9](.[0-9]+)*$",RegexOptions.Compiled);
+            var exp = new Regex(@"^[0-9]+(\.[0-9]+)?$",RegexOptions.Compiled);
             if (exp.IsMatch(lex))
                 isValid = true;
             return isValid;

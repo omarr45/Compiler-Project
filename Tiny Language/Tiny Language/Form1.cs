@@ -17,15 +17,12 @@ namespace Tiny_Language
             InitializeComponent();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void compileBtn_Click(object sender, EventArgs e)
         {
-            textBox2.Clear();
-            //string Code=textBox1.Text.ToLower();
-            string Code = textBox1.Text;
-            Tiny_Language.Start_Compiling(Code);
+            clearBtn_Click(sender, e);
+            Tiny_Language.Start_Compiling(CodeTextBox.Text);
             PrintTokens();
-            //   PrintLexemes();
-
+            
             PrintErrors();
         }
         void PrintTokens()
@@ -40,31 +37,18 @@ namespace Tiny_Language
         {
             for (int i = 0; i < Errors.Error_List.Count; i++)
             {
-                textBox2.Text += Errors.Error_List[i];
-                textBox2.Text += "\r\n";
+                ErrorsTextBox.Text += Errors.Error_List[i];
+                ErrorsTextBox.Text += "\r\n";
             }
         }
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
 
-        }
-
-        private void button2_Click(object sender, EventArgs e)
+        private void clearBtn_Click(object sender, EventArgs e)
         {
-            //TODO: make button clear clear the actual data not just hide it, also clear errors
+            ErrorsTextBox.Clear();
             dataGridView1.Rows.Clear();
             Tiny_Language.TokenStream.Clear();
             Tiny_Language.Tiny_Scanner.Tokens.Clear();
+            Errors.Error_List.Clear();
         }
-
-        /*  void PrintLexemes()
-            {
-                for (int i = 0; i < Tiny_Language.Lexemes.Count; i++)
-                {
-                    textBox2.Text += Tiny_Language.Lexemes.ElementAt(i);
-                    textBox2.Text += Environment.NewLine;
-                }
-            }
-        */
     }
 }

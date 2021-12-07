@@ -29,28 +29,28 @@ namespace Tiny_Language
         /// </summary>
         private void InitializeComponent()
         {
-            this.button2 = new System.Windows.Forms.Button();
+            this.clearBtn = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.button1 = new System.Windows.Forms.Button();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.compileBtn = new System.Windows.Forms.Button();
+            this.ErrorsTextBox = new System.Windows.Forms.TextBox();
+            this.CodeTextBox = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
-            // button2
+            // clearBtn
             // 
-            this.button2.Location = new System.Drawing.Point(628, 486);
-            this.button2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(160, 54);
-            this.button2.TabIndex = 13;
-            this.button2.Text = "Clear";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.clearBtn.Location = new System.Drawing.Point(628, 486);
+            this.clearBtn.Margin = new System.Windows.Forms.Padding(4);
+            this.clearBtn.Name = "clearBtn";
+            this.clearBtn.Size = new System.Drawing.Size(160, 54);
+            this.clearBtn.TabIndex = 13;
+            this.clearBtn.Text = "Clear";
+            this.clearBtn.UseVisualStyleBackColor = true;
+            this.clearBtn.Click += new System.EventHandler(this.clearBtn_Click);
             // 
             // label2
             // 
@@ -102,34 +102,34 @@ namespace Tiny_Language
             this.Column2.Name = "Column2";
             this.Column2.Width = 125;
             // 
-            // button1
+            // compileBtn
             // 
-            this.button1.Location = new System.Drawing.Point(139, 475);
-            this.button1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(195, 55);
-            this.button1.TabIndex = 9;
-            this.button1.Text = "Compile !";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.compileBtn.Location = new System.Drawing.Point(139, 475);
+            this.compileBtn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.compileBtn.Name = "compileBtn";
+            this.compileBtn.Size = new System.Drawing.Size(195, 55);
+            this.compileBtn.TabIndex = 9;
+            this.compileBtn.Text = "Compile !";
+            this.compileBtn.UseVisualStyleBackColor = true;
+            this.compileBtn.Click += new System.EventHandler(this.compileBtn_Click);
             // 
-            // textBox2
+            // ErrorsTextBox
             // 
-            this.textBox2.Location = new System.Drawing.Point(17, 535);
-            this.textBox2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.textBox2.Multiline = true;
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(471, 114);
-            this.textBox2.TabIndex = 8;
+            this.ErrorsTextBox.Location = new System.Drawing.Point(17, 535);
+            this.ErrorsTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.ErrorsTextBox.Multiline = true;
+            this.ErrorsTextBox.Name = "ErrorsTextBox";
+            this.ErrorsTextBox.Size = new System.Drawing.Size(471, 114);
+            this.ErrorsTextBox.TabIndex = 8;
             // 
-            // textBox1
+            // CodeTextBox
             // 
-            this.textBox1.Location = new System.Drawing.Point(17, 34);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(471, 418);
-            this.textBox1.TabIndex = 7;
+            this.CodeTextBox.Location = new System.Drawing.Point(17, 34);
+            this.CodeTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.CodeTextBox.Multiline = true;
+            this.CodeTextBox.Name = "CodeTextBox";
+            this.CodeTextBox.Size = new System.Drawing.Size(471, 418);
+            this.CodeTextBox.TabIndex = 7;
             // 
             // Form1
             // 
@@ -137,13 +137,13 @@ namespace Tiny_Language
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(931, 678);
-            this.Controls.Add(this.button2);
+            this.Controls.Add(this.clearBtn);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.dataGridView1);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.compileBtn);
+            this.Controls.Add(this.ErrorsTextBox);
+            this.Controls.Add(this.CodeTextBox);
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.MaximizeBox = false;
             this.MaximumSize = new System.Drawing.Size(949, 725);
@@ -158,15 +158,15 @@ namespace Tiny_Language
 
         #endregion
 
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button clearBtn;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Button compileBtn;
+        private System.Windows.Forms.TextBox ErrorsTextBox;
+        private System.Windows.Forms.TextBox CodeTextBox;
     }
 }
 
