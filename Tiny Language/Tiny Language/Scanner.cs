@@ -91,7 +91,8 @@ namespace Tiny_Language
                 else if (currentLetter == '/' && SourceCode[i + 1] == '*')
                 {
                     i += 2;
-                    currentLetter = SourceCode[i];
+                    if(i < SourceCode.Length)
+                        currentLetter = SourceCode[i];
                     currentLexeme += "/*";
                     while (i + 1 < SourceCode.Length && (currentLetter != '*' || SourceCode[i + 1] != '/'))
                     {
