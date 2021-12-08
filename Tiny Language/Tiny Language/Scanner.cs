@@ -79,7 +79,7 @@ namespace Tiny_Language
                 // is it the start of an identifier or reserverd word ? 
                 if(char.IsLetter(currentLetter))
                 {
-                    // iterate and build up the current lexeme untill currentLetter is a white space
+                    // iterate and build up the current lexeme until currentLetter is a white space
                     while (i < SourceCode.Length && char.IsLetterOrDigit(SourceCode[i]))
                     {
                         currentLetter = SourceCode[i++];
@@ -98,8 +98,11 @@ namespace Tiny_Language
                         currentLexeme += currentLetter;
                         currentLetter = SourceCode[++i];
                     }
-                    i++;
-                    currentLexeme += "*/";
+                    if (i + 1 < SourceCode.Length)
+                    {
+                        currentLexeme += currentLetter;
+                        currentLexeme += SourceCode[++i];
+                    }
                 }
                 // is it the start of a string ? 
                 else if(currentLetter == '\"')
