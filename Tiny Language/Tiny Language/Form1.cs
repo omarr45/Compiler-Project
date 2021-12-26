@@ -22,9 +22,10 @@ namespace Tiny_Language
             clearBtn_Click(sender, e);
             Tiny_Language.Start_Compiling(CodeTextBox.Text);
             PrintTokens();
-            
+            treeView1.Nodes.Add(Parser.PrintParseTree(Tiny_Language.treeroot));
             PrintErrors();
         }
+
         void PrintTokens()
         {
             for (int i = 0; i < Tiny_Language.Tiny_Scanner.Tokens.Count; i++)
@@ -48,7 +49,9 @@ namespace Tiny_Language
             dataGridView1.Rows.Clear();
             Tiny_Language.TokenStream.Clear();
             Tiny_Language.Tiny_Scanner.Tokens.Clear();
+            treeView1.Nodes.Clear();
             Errors.Error_List.Clear();
+
         }
     }
 }
