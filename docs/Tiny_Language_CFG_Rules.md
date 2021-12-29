@@ -45,7 +45,7 @@
 16. **Conditions** → Boolean_Op Condition **Conditions** | e
 17. If_statement  → if Condition_statement then **StatementsOrReturn** **Rest_if** 
 18. **Rest_if**  → Else_if_statement | Else_statement | end 
-//**StatementsOrReturn** --> Statements **StatementsOrReturn** | Return_statement | e
+19. **StatementsOrReturn** → Statements **StatementsOrReturn** | Return_statement | e
 19. Else_if_statement  → elseif Condition_statement then **StatementsOrReturn** **Rest_if** 
 20. Else_statement  → else **Statements** end 
 21. Return_Statement → return Expression ;
