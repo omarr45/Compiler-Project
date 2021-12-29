@@ -34,7 +34,7 @@
 5. Function_Body → { **Statements** Return_Statement }
 6. **Statements →** **Statement** **Statements'**
 7. **Statements' →** **Statement Statements'** | e
-8. **Statement** → Assignment_Statement ;| Declaration_Statement | Write_Statement | Read_Statement | Return_Statement | Condition_Statement | If_Statement | Repeat_Statement | Function_Call ;
+8. **Statement** → Assignment_Statement ;| Declaration_Statement | Write_Statement | Read_Statement | Condition_Statement | If_Statement | Repeat_Statement | Function_Call ;
 9. Function_Declaration → Datatype Function_Name ( **Parameters** )
 10. **Parameters →** Parameter **Parameters'** | e
 11. **Parameters' →** , Parameter **Parameters'** | e
@@ -43,9 +43,10 @@
 14. Repeat_Statement → repeat **Statements** until Condition_Statement
 15. Condition_Statement → Condition **Conditions** 
 16. **Conditions** → Boolean_Op Condition **Conditions** | e
-17. If_statement  → if Condition_statement then **Statements** **Rest_if** 
+17. If_statement  → if Condition_statement then **StatementsOrReturn** **Rest_if** 
 18. **Rest_if**  → Else_if_statement | Else_statement | end 
-19. Else_if_statement  → elseif Condition_statement then **Statements** **Rest_if** 
+//**StatementsOrReturn** --> Statements **StatementsOrReturn** | Return_statement | e
+19. Else_if_statement  → elseif Condition_statement then **StatementsOrReturn** **Rest_if** 
 20. Else_statement  → else **Statements** end 
 21. Return_Statement → return Expression ;
 22. Read_Statement → read Identifier ;
