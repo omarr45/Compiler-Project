@@ -68,8 +68,7 @@
 38. Condition  →  Identifier Condition_Op Expression
 39. Add_Op →  + | -
 40. Mult_Op →  * | /
-41. Equation →  Equation Add_Op factor | factor
-42. Equation →  factor **Equation'**
-43. **Equation'** →  Add_Op factor **Equation'** | epsilon
-44. factor →  factor Mult_Op term | term
-45. Term →  ( Equation ) | Number | Identifier | Function_Call
+41. Equation →  factor **Equation'**
+42. **Equation'** →  Add_Op factor **Equation'** | epsilon
+43. factor →  factor Mult_Op term | term
+44. Term →  ( Equation ) | Number | Identifier | Function_Call
