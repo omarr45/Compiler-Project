@@ -46,7 +46,6 @@
 17. If_statement  → if Condition_statement then **StatementsOrReturn** **Rest_if** 
 18. **Rest_if**  → Else_if_statement | Else_statement | end 
 19. **StatementsOrReturn** → Statements **StatementsOrReturn** | Return_statement | e
-<<<<<<< HEAD
 20. Else_if_statement  → elseif Condition_statement then **StatementsOrReturn** **Rest_if** 
 21. Else_statement  → else **Statements** end 
 22. Return_Statement → return Expression ;
