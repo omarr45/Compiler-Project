@@ -34,7 +34,7 @@
 5. Function_Body → { **Statements** Return_Statement }
 6. **Statements →** **Statement** **Statements'**
 7. **Statements' →** **Statement Statements'** | e
-8. **Statement** → Assignment_Statement ;| Declaration_Statement | Write_Statement | Read_Statement | Condition_Statement | If_Statement | Repeat_Statement | Function_Call ;
+8. **Statement** → Assignment_Statement ;| Declaration_Statement | Write_Statement | Read_Statement | Return_Statement | Condition_Statement | If_Statement | Repeat_Statement | Function_Call ;
 9. Function_Declaration → Datatype Function_Name ( **Parameters** )
 10. **Parameters →** Parameter **Parameters'** | e
 11. **Parameters' →** , Parameter **Parameters'** | e
@@ -43,32 +43,30 @@
 14. Repeat_Statement → repeat **Statements** until Condition_Statement
 15. Condition_Statement → Condition **Conditions** 
 16. **Conditions** → Boolean_Op Condition **Conditions** | e
-17. If_statement  → if Condition_statement then **StatementsOrReturn** **Rest_if** 
-18. **Rest_if**  → Else_if_statement | Else_statement | end 
-19. **StatementsOrReturn** → Statements **StatementsOrReturn** | Return_statement | e
-20. Else_if_statement  → elseif Condition_statement then **StatementsOrReturn** **Rest_if** 
-21. Else_statement  → else **Statements** end 
-22. Return_Statement → return Expression ;
-23. Read_Statement → read Identifier ;
-24. Write_Statement → write **Write'** ;
-25. **Write'** → Expression | endl 
-26. Declaration_Statement → Datatype **Ids** ;
-27. **Ids →** Identifier **Ids'** | Assignment_Statement **Ids'**
-28. **Ids'** → , **Idds** |e
-29. **Idds** → Identifier **Ids'** | Assignment_Statement **Ids'**
-30. Datatype → int | float | string
-31. Assignment_Statement → Identifier := Expression 
-32. Expression → String | Term | Equation
-33. Arithmatic_Op → Add_Op | Mult_Op
-34. Boolean_Op → && | "||"
-35. Condition_Op → < | > | = | <>
-36. Function_Call → Function_Name ( **Identifiers** )
-37. **Identifiers →** Identifier **Identifier'** | e
-38. **Identifier' → ,** Identifier **Identifier'** | e
-39. Condition  →  Identifier Condition_Op Expression
-40. Add_Op →  + | -
-41. Mult_Op →  * | /
-42. Equation →  factor **Equation'**
-43. **Equation'** →  Add_Op factor **Equation'** | epsilon
-44. factor →  ( Equation )  | factor Mult_Op term | term
+17. If_statement  → if Condition_statement then **Statements** **Rest_if** 
+18. **Rest_if**  → Else_if_statement | Else_statement | end
+19. Else_if_statement  → elseif Condition_statement then **Statements** **Rest_if** 
+20. Else_statement  → else **Statements** end 
+21. Return_Statement → return Expression ;
+22. Read_Statement → read Identifier ;
+23. Write_Statement → write **Write'** ;
+24. **Write'** → Expression | endl 
+25. Declaration_Statement → Datatype **Ids** ;
+26. **Ids →** Identifier **Ids'** | Assignment_Statement **Ids'**
+27. **Ids'** → , **Ids** |e
+28. Datatype → int | float | string
+29. Assignment_Statement → Identifier := Expression 
+30. Expression → String | Term | Equation
+31. Arithmatic_Op → Add_Op | Mult_Op
+32. Boolean_Op → && | "||"
+33. Condition_Op → < | > | = | <>
+34. Function_Call → Function_Name ( **Identifiers** )
+35. **Identifiers →** Identifier **Identifier'** | e
+36. **Identifier' → ,** Identifier **Identifier'** | e
+37. Condition  →  Identifier Condition_Op Expression
+38. Add_Op →  + | -
+39. Mult_Op →  * | /
+40. Equation →  Factor **Equation'**
+41. **Equation'** →  Add_Op Factor **Equation'** | epsilon
+42. Factor →  ( Equation )  | Factor Mult_Op Term | Term
 45. Term →  Number | Identifier | Function_Call

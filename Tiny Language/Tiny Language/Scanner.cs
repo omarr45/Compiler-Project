@@ -11,7 +11,7 @@ public enum Token_Class
     Semicolon, Comma, LParanthesis, RParanthesis, LCurlyBracket, RCurlyBracket,
     EqualOp, LessThanOp, GreaterThanOp, NotEqualOp, AssignmentOp, AndOp, OrOp,
     PlusOp, MinusOp, MultiplyOp, DivideOp,
-    Idenifier, Constant
+    Idenifier, Constant, Main, End
 }
 namespace Tiny_Language
 {
@@ -42,7 +42,9 @@ namespace Tiny_Language
             ReservedWords.Add("then", Token_Class.Then);
             ReservedWords.Add("return", Token_Class.Return);
             ReservedWords.Add("endl", Token_Class.Endl);
-            
+            ReservedWords.Add("main", Token_Class.Main);
+            ReservedWords.Add("end", Token_Class.End);
+
             // List of Operators
             Operators.Add(";", Token_Class.Semicolon);
             Operators.Add(",", Token_Class.Comma);
