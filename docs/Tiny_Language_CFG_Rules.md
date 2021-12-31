@@ -56,7 +56,8 @@
 27. **Ids'** → , **Ids** |e
 28. Datatype → int | float | string
 29. Assignment_Statement → Identifier := Expression 
-30. Expression → String | Term | Equation
+30. Expression → String | Term Exp
+//Exp --> Arithmatic_Op Term | e
 31. Arithmatic_Op → Add_Op | Mult_Op
 32. Boolean_Op → && | "||"
 33. Condition_Op → < | > | = | <>
@@ -68,5 +69,7 @@
 39. Mult_Op →  * | /
 40. Equation →  Factor **Equation'**
 41. **Equation'** →  Add_Op Factor **Equation'** | epsilon
-42. Factor →  ( Equation )  | Factor Mult_Op Term | Term
-45. Term →  Number | Identifier | Function_Call
+42. Factor →  ( Equation )  | Term factorD
+//factorD --> Mult_Op Term| e
+45. Term →  Number | Identifier TermD
+//TermD --> (Identifiers)|e
