@@ -32,7 +32,7 @@
 3. Main_Function → Datatype main ( ) Function_Body
 4. Function_Statement → Function_Declaration Function_Body
 5. Function_Body → { **Statements** Return_Statement }
-6. **Statements →** **Statement** **Statements'**
+6. **Statements →** **Statement** **Statements'** | e
 7. **Statements' →** **Statement Statements'** | e
 8. **Statement** → Assignment_Statement ;| Declaration_Statement | Write_Statement | Read_Statement | Condition_Statement | If_Statement | Repeat_Statement | Function_Call ;
 9. Function_Declaration → Datatype Function_Name ( **Parameters** )
@@ -47,7 +47,7 @@
 18. **Rest_if**  → Else_if_statement | Else_statement | end 
 19. **StatementsOrReturn** → Statements **StatementsOrReturn** | Return_statement | e
 20. Else_if_statement  → elseif Condition_statement then **StatementsOrReturn** **Rest_if** 
-21. Else_statement  → else **Statements** end 
+21. Else_statement  → else **StatementsOrReturn** end 
 22. Return_Statement → return Expression ;
 23. Read_Statement → read Identifier ;
 24. Write_Statement → write **Write'** ;
@@ -64,7 +64,7 @@
 35. Function_Call → Function_Name ( **Identifiers** )
 36. **Identifiers →** Identifier **Identifier'** | e
 37. **Identifier' → ,** Identifier **Identifier'** | e
-38. Condition  →  Identifier Condition_Op Expression
+38. Condition  →  Identifier Condition_Op Term
 39. Add_Op →  + | -
 40. Mult_Op →  * | /
 41. Equation →  Factor **Equation'**
