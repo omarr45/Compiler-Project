@@ -70,6 +70,6 @@
 41. Equation →  Factor **Equation'**
 42. **Equation'** →  Add_Op Factor **Equation'** | e
 43. Factor →  ( Equation ) Factor'  | Term Factor'
-2. Factor' →  Mult_Op Term Factor' | e
+2. Factor' →  Mult_Op Equation Factor' | e
 45. Term →  Number | Identifier | Function_Call
 

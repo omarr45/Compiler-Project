@@ -194,14 +194,14 @@ namespace Tiny_Language
                 Tok.token_type = Operators[Lex];
                 Tokens.Add(Tok);
             }
+            // is the lex a comment ?
             else if (isComment(Lex))
             {
-                Tok.token_type = Token_Class.Comment;
-                Tokens.Add(Tok);
+                // skip it
             }
             else
             {
-                Errors.Error_List.Add("Unrecognized token:\t" + Lex);
+                Errors.Error_List.Add("Unrecognized token:\t" + Lex + '\n');
             }
 
         }
