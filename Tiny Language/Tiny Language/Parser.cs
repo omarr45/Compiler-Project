@@ -548,12 +548,12 @@ namespace Tiny_Language
         {
             Node declarationStatement = new Node("Declaration Statement");
             declarationStatement.Children.Add(Datatype());
-            declarationStatement.Children.Add(Ids());
+            declarationStatement.Children.Add(Identifiers());
             declarationStatement.Children.Add(match(Token_Class.Semicolon));
             return declarationStatement;
         }
 
-        private Node Ids()
+        private Node Identifiers()
         {
             Node ids = new Node("IDs");
             if(InputPointer + 1 < TokenStream.Count && (TokenStream[InputPointer + 1].token_type == Token_Class.Comma || TokenStream[InputPointer + 1].token_type == Token_Class.Semicolon))
@@ -577,7 +577,7 @@ namespace Tiny_Language
             if (InputPointer < TokenStream.Count && TokenStream[InputPointer].token_type == Token_Class.Comma)
             {
                 idsD.Children.Add(match(Token_Class.Comma));
-                idsD.Children.Add(Ids());
+                idsD.Children.Add(Identifiers());
                 return idsD;
             }
             else
@@ -660,32 +660,32 @@ namespace Tiny_Language
             Node funcCall = new Node("Function Call");
             funcCall.Children.Add(match(Token_Class.Idenifier));
             funcCall.Children.Add(match(Token_Class.LParanthesis));
-            funcCall.Children.Add(Identifiers());
+            funcCall.Children.Add(Arguments());
             funcCall.Children.Add(match(Token_Class.RParanthesis));
             return funcCall;
         }
 
-        private Node Identifiers()
+        private Node Arguments()
         {
-            Node ids = new Node("Identifiers");
+            Node args = new Node("Identifiers");
             if (InputPointer < TokenStream.Count && TokenStream[InputPointer].token_type == Token_Class.Idenifier)
             {
-                ids.Children.Add(match(Token_Class.Idenifier));
-                ids.Children.Add(IdentifierD());
-                return ids;
+                args.Children.Add(match(Token_Class.Idenifier));
+                args.Children.Add(ArgumentsD());
+                return args;
             }
             else
                 return null;
         }
 
-        private Node IdentifierD()
+        private Node ArgumentsD()
         {
             Node idD = new Node("Identifier'");
             if (InputPointer < TokenStream.Count && TokenStream[InputPointer].token_type == Token_Class.Comma)
             {
                 idD.Children.Add(match(Token_Class.Comma));
                 idD.Children.Add(match(Token_Class.Idenifier));
-                idD.Children.Add(IdentifierD());
+                idD.Children.Add(ArgumentsD());
                 return idD;
             }
             else

@@ -52,18 +52,18 @@
 23. Read_Statement → read Identifier ;
 24. Write_Statement → write **Write'** ;
 25. **Write'** → Expression | endl 
-26. Declaration_Statement → Datatype **Ids** ;
-27. **Ids →** Identifier **Ids'** | Assignment_Statement **Ids'**
-28. **Ids'** → , **Ids** |e
+26. Declaration_Statement → Datatype **Identifiers** ;
+27. **Identifiers →** Identifier **Identifiers'** | Assignment_Statement **Identifiers'**
+28. **Identifiers'** → , **Identifiers** |e
 29. Datatype → int | float | string
 30. Assignment_Statement → Identifier := Expression 
 31. Expression → String | Equation
 32. Arithmatic_Op → Add_Op | Mult_Op
 33. Boolean_Op → && | "||"
 34. Condition_Op → < | > | = | <>
-35. Function_Call → Function_Name ( **Identifiers** )
-36. **Identifiers →** Identifier **Identifier'** | e
-37. **Identifier' → ,** Identifier **Identifier'** | e
+35. Function_Call → Function_Name ( **Arguments** )
+36. **Arguments →** Identifier **Argument'** | e
+37. **Argument' → ,** Identifier **Argument'** | e
 38. Condition  →  Identifier Condition_Op Term
 39. Add_Op →  + | -
 40. Mult_Op →  * | /
