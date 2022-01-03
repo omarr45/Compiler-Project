@@ -51,7 +51,6 @@ namespace Tiny_Language
             Tiny_Language.Tiny_Scanner.Tokens.Clear();
             treeView1.Nodes.Clear();
             Errors.Error_List.Clear();
-
         }
     }
 }

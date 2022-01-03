@@ -100,7 +100,6 @@ namespace Tiny_Language
             Node program = new Node("Program");
             program.Children.Add(ProgramD());
             program.Children.Add(MainFunction());
-            MessageBox.Show("Success");
             return program;
         }
 
