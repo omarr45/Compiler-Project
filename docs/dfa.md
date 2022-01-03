@@ -6,7 +6,7 @@
 
 ### Comment
 
-![Comment](DFA's/Comment_DFA.png)
+![Comment](DFA's/CommentDFA.drawio.png)
 
 ### Number
 
@@ -26,7 +26,7 @@
 
 ### String
 
-![String](DFA's/String_DFA.png)
+![String](DFA's/StringDFA.png)
 
 ### Reserved Word
 
