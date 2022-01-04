@@ -94,14 +94,22 @@ namespace Tiny_Language
             bool isString = TokenStream[InputPointer].token_type == Token_Class.String;
             return (isString || isEquation(InputPointer));
         }
-        private void printError(string Expected, int inputPointer=-1)
+        private void printError(string Expected, int inputPointer = -1)
         {
             if (inputPointer == -1)
                 inputPointer = InputPointer;
-            Errors.Error_List.Add("Parsing Error: Expected "
-                        + Expected + " and " +
-                        TokenStream[inputPointer].token_type.ToString() +
-                        "  found\r\n");
+            if (inputPointer < TokenStream.Count)
+            {
+                Errors.Error_List.Add("Parsing Error: Expected "
+                            + Expected + " and " +
+                            TokenStream[inputPointer].token_type.ToString() +
+                            "  found\r\n");
+            }
+            else
+            {
+                Errors.Error_List.Add("Parsing Error: Expected "
+                            + Expected + " and found nothing\r\n");
+            }
             InputPointer++;
         }
 
