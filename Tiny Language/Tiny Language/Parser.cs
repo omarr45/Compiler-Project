@@ -84,6 +84,16 @@ namespace Tiny_Language
             bool isDivide = TokenStream[InputPointer].token_type == Token_Class.DivideOp;
             return isMult|| isDivide;
         }
+        private bool isEquation(int InputPointer)
+        {
+            bool isLParanthesis = TokenStream[InputPointer].token_type == Token_Class.LParanthesis;
+            return (isLParanthesis || isTerm(InputPointer));
+        }
+        private bool isExpression(int InputPointer)
+        {
+            bool isString = TokenStream[InputPointer].token_type == Token_Class.String;
+            return (isString || isEquation(InputPointer));
+        }
         private void printError(string Expected, int inputPointer=-1)
         {
             if (inputPointer == -1)
@@ -229,7 +239,7 @@ namespace Tiny_Language
             {
                 exp.Children.Add(match(Token_Class.String));
             }
-            else if (InputPointer < TokenStream.Count && (TokenStream[InputPointer].token_type == Token_Class.LParanthesis || isTerm(InputPointer)))
+            else if (InputPointer < TokenStream.Count && isEquation(InputPointer))
             {
                 exp.Children.Add(Equation());
             }
@@ -526,7 +536,7 @@ namespace Tiny_Language
             {
                 writeD.Children.Add(match(Token_Class.Endl));
             }
-            else if (InputPointer < TokenStream.Count && (TokenStream[InputPointer].token_type == Token_Class.String || TokenStream[InputPointer].token_type == Token_Class.LParanthesis || isTerm(InputPointer)))
+            else if (InputPointer < TokenStream.Count && isExpression(InputPointer))
             { 
                 writeD.Children.Add(Expression());
             }
@@ -668,9 +678,9 @@ namespace Tiny_Language
         private Node Arguments()
         {
             Node args = new Node("Identifiers");
-            if (InputPointer < TokenStream.Count && TokenStream[InputPointer].token_type == Token_Class.Idenifier)
+            if (InputPointer < TokenStream.Count && isExpression(InputPointer))
             {
-                args.Children.Add(match(Token_Class.Idenifier));
+                args.Children.Add(Expression());
                 args.Children.Add(ArgumentsD());
                 return args;
             }
@@ -684,7 +694,7 @@ namespace Tiny_Language
             if (InputPointer < TokenStream.Count && TokenStream[InputPointer].token_type == Token_Class.Comma)
             {
                 idD.Children.Add(match(Token_Class.Comma));
-                idD.Children.Add(match(Token_Class.Idenifier));
+                idD.Children.Add(Expression());
                 idD.Children.Add(ArgumentsD());
                 return idD;
             }
